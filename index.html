@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="零点睡不着队" content="width=device-width, initial-scale=1.0">
+    <title>登录界面</title>
+    <!-- 在这里显示链接css/JavaScript脚本 -->
+    <link rel="stylesheet" type="text/css" href="TryOne.css">
+    <!-- <script src="TryOne.js"></script> -->
+</head>
+
+<body>
+    <div class="video-background">
+        <video playsinline="" autoplay="autoplay" loop="loop" muted="muted" poster="thumbnail.jpg">
+            <source src="shili.mp4" type="video/mp4">
+            <source src="shili.ogg" type="video/ogg">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+
+    <!-- /****************** 轮播图 *********************/ -->
+    <div class="slider">
+        <img class="active" src="image1.jpg" alt="Image 1">
+        <img src="image2.jpg" alt="Image 2">
+        <img src="image3.jpg" alt="Image 3">
+        <img src="image4.jpg" alt="Image 4">
+        <img src="image5.jpg" alt="Image 5">
+        <img src="image6.jpg" alt="Image 6">
+        <img src="image7.jpg" alt="Image 7">
+        <img src="image8.jpg" alt="Image 8">
+        <img src="image9.jpg" alt="Image 9">
+        <!-- 更多图片... -->
+        <div class="nav">
+            <button onclick="prev()">上一张</button>
+            <button onclick="next()">下一张</button>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <article class="header">
+            <!-- 页面内容 -->
+            <h1>
+                <p style="color: rgb(234, 19, 23);">
+                    <strong>诸子百家网</strong>
+                </p>
+            </h1>
+            <h2>
+                <div>
+                    <!-- 账户与密码 -->
+                    <form class="Enter">
+                        <div>
+                            <br><label for="qqEmail">账 号:</label>
+                            <input type="text" id="qqEmail" onblur="onEmailInputBlur()" placeholder="请输入QQ邮箱地址。">
+                        </div>
+                        <div>
+                            <br><label for="password">密 码:</label>
+                            <input type="password" id="Password" onblur="onPasswordInputBlur()" placeholder="不少于六个字符">
+                        </div>
+                    </form>
+
+                    <!-- 验证密码与账户匹配（JavaScript+哈希） -->
+
+
+                    <!-- 登录按钮+ 登录跳转-->
+                    <form>
+                        <br><br><button class="Login" type="button" onclick="validateLogin()">登录(Login)</button>
+                    </form>
+                </div>
+
+
+
+                <!-- 小字部分 -->
+                <style>
+                    /* 给左边字和右边字扩开一段距离 */
+                    .spaced-out {
+                        margin: 0 66px;
+                        /* 左边距和右边距各68px */
+                    }
+                </style>
+                <br>
+                <a>
+                    <p style="text-decoration: underline;color: burlywood;"><a
+                            href="/01大学代码/VS code/Try/Two_stage1/Sign_up.html">注册 </a>
+                        <span class="spaced-out"></span><a
+                            href="/01大学代码/VS code/Try/Two_stage2/RecoverPassword.html">找回密码</a>
+                    </p>
+                </a>
+            </h2>
+        </article>
+    </div>
+    <!-- 在结尾处链接js，以便网站可以更快加载 -->
+    <script src="TryOne.js"></script>
+
+
+    <!-- /****************** 轮播图 *********************/ -->
+    <script>
+        var slides = document.querySelectorAll('.slider img');
+        var currentSlide = 0;
+        function showSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            slides[index].classList.add('active');
+            currentSlide = index;
+        }
+        function prev() {
+            var nextSlide = currentSlide - 1 < 0 ? slides.length - 1 : currentSlide - 1;
+            showSlide(nextSlide);
+        }
+        function next() {
+            var nextSlide = (currentSlide + 1) % slides.length;
+            showSlide(nextSlide);
+        }
+        // 自动播放
+        setInterval(next, 5000);
+    </script>
+
+</body>
+
+</html>

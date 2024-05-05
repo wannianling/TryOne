@@ -1,0 +1,125 @@
+div {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    /*设置行高和行间距*/
+    height: cover;
+    margin: 0;
+    /*自适应窗口大小*/
+    /* background-position: center; 居中显示*/
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+
+* {
+    font-family: cursive;
+}
+
+/* *******视频窗口大小设置 ************/
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 400px;
+    width: 720px;
+    margin: 0 auto;
+}
+
+.video-background {
+    /* position: fixed; */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -100;
+    background-size: cover;
+}
+
+/* 设置内容样式 */
+.container {
+    text-align: center;
+    /* 文本居中 */
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    /* 确保内容在视频之上 */
+    padding: 20px;
+    text-align: center;
+
+    background: rgba(59, 58, 58, 0.5);
+    /* 半透明背景，以便在视频上可见 */
+    color: white;
+    /* 文本颜色 */
+    position: relative;
+    /* top: 10px; */
+    bottom: 500px;
+    right: 5px;
+    height: 500px;
+    width: 380px;
+    margin: 0 auto;
+}
+
+
+.Login {
+    background-color: #2ecc71;
+    height: 70px;
+    width: 350px;
+    font-size: 25px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+/****************** 轮播图 *********************/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.slider {
+    position: relative;
+    top: 100px;
+    text-align: center;
+    width: 460px;
+    height: 650px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.slider img {
+    background: rgba(59, 58, 58, 0.5);
+    position: relative;
+    width: 450px;
+    height: 650px;
+    display: none;
+}
+
+.slider img.active {
+    display: block;
+}
+
+.nav {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav button {
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 5px;
+}
