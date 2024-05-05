@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诸子百家</title>
+
+    <!-- <link rel="stylesheet" href="Homepage.css"> -->
+    <style>
+        /* styles.css  */
+
+        .background-image {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* 视口高度 */
+            background-image: url('主界面背景图.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay-image {
+            position: absolute;
+            width: 100px;
+            /* 根据需要调整图片宽度 */
+            height: auto;
+            /* 高度自适应 */
+        }
+
+        #apps-container .app-item {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .background-image {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('主界面背景图.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay-image {
+            position: absolute;
+            width: 130px;
+            height: auto;
+        }
+
+        .overlay-image1 {
+            top: 13px;
+            left: 60px;
+            width: 150px;
+            height: 132px;
+
+        }
+
+        .overlay-image2 {
+            top: 40px;
+            left: 270px;
+            width: 250px;
+        }
+
+        .overlay-image3 {
+            top: 40px;
+            left: -200px;
+            width: 690px;
+            height: 450px;
+        }
+
+        /* 新增搜索栏样式 */
+        .search-bar {
+            position: absolute;
+            top: 20%;
+            /* 根据需要调整 */
+            left: 35%;
+            transform: translate(-50%, -50%);
+            /* 使搜索栏居中 */
+            width: 300px;
+            /* 初始宽度，可调整 */
+            height: 40px;
+            /* 初始高度，可调整 */
+            background: #fff;
+            /* 搜索栏背景色 */
+            border: 1px solid #ccc;
+            /* 边框 */
+            border-radius: 20px;
+            /* 圆角 */
+            padding: 5px;
+            /* 内部空间 */
+            box-sizing: border-box;
+            /* 包含边框的宽度和高度 */
+        }
+
+        .search-bar input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 0 20px;
+            font-size: 16px;
+            outline: none;
+            /* 移除聚焦时的边框 */
+            border-radius: 20px;
+            /* 输入框圆角 */
+        }
+
+        .search-bar button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 30px;
+            height: 30px;
+            background: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            /* 按钮圆角 */
+            font-size: 14px;
+        }
+
+        /* 透明表单容器样式 */
+        .transparent-form {
+            position: absolute;
+            top: 180px;
+            /* 根据需要调整 */
+            left: 110px;
+            /* 根据需要调整 */
+            width: 560px;
+            /* 根据需要调整 */
+            height: 360px;
+            /* 根据需要调整 */
+            background: transparent;
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            /* 将容器分为2等份 */
+            gap: 10px;
+            /* 网格单元之间的间隔 */
+        }
+
+        .transparent-form>div {
+            background: rgba(255, 255, 255, 0.5);
+            /* 透明背景 */
+            border: 1px solid #ccc;
+            /* 边框 */
+            border-radius: 5px;
+            /* 圆角 */
+            padding: 10px;
+            /* 内部空间 */
+            box-sizing: border-box;
+            /* 包含边框的宽度和高度 */
+        }
+
+        /* 应用区域样式，用于定位图标和文字 */
+        .app-area {
+            position: relative;
+            /* 允许子元素进行绝对定位 */
+            padding: 10px;
+            /* 根据需要调整内边距 */
+        }
+
+        /* 哔哩哔哩图标样式 */
+        .bilibili-icon {
+            position: absolute;
+            top: 40px;
+            /* 图标垂直位置，根据需要调整 */
+            left: 15px;
+            /* 图标水平位置，根据需要调整 */
+            width: 40px;
+            /* 图标宽度，根据需要调整 */
+            height: 40px;
+            /* 高度自适应 */
+        }
+
+        /* 哔哩哔哩文字样式 */
+        .bilibili-text {
+            position: relative;
+            /* 相对于.app-area定位 */
+            top: 50px;
+            /* 文字与图标的垂直间距，根据图标高度调整 */
+            left: 0;
+            /* 文字的水平位置，根据需要调整 */
+            font-size: 10px;
+            /* 文字大小，根据需要调整 */
+        }
+
+        /* 淘宝图标样式 */
+        .taobao-icon {
+            position: absolute;
+            top: 40px;
+            /* 图标垂直位置，根据需要调整 */
+            left: 80px;
+            /* 图标水平位置，根据需要调整 */
+            width: 40px;
+            /* 图标宽度，根据需要调整 */
+            height: 40px;
+            /* 高度自适应 */
+        }
+
+        /* 淘宝文字样式 */
+        .taobao-text {
+            position: relative;
+            /* 相对于.app-area定位 */
+            top: 34px;
+            /* 文字与图标的垂直间距，根据图标高度调整 */
+            left: 75px;
+            /* 文字的水平位置，根据需要调整 */
+            font-size: 10px;
+            /* 文字大小，根据需要调整 */
+        }
+
+        /* aiqiyi图标样式 */
+        .aiqiyi-icon {
+            position: absolute;
+            top: 40px;
+            /* 图标垂直位置，根据需要调整 */
+            left: 145px;
+            /* 图标水平位置，根据需要调整 */
+            width: 40px;
+            /* 图标宽度，根据需要调整 */
+            height: 40px;
+            /* 高度自适应 */
+        }
+
+        /*aiqiyi文字样式 */
+        .aiqiyi-text {
+            position: relative;
+            /* 相对于.app-area定位 */
+            top: 18px;
+            /* 文字与图标的垂直间距，根据图标高度调整 */
+            left: 137px;
+            /* 文字的水平位置，根据需要调整 */
+            font-size: 10px;
+            /* 文字大小，根据需要调整 */
+        }
+
+        /* 腾讯视频图标样式 */
+        .txsp-icon {
+            position: absolute;
+            top: 40px;
+            /* 图标垂直位置，根据需要调整 */
+            left: 210px;
+            /* 图标水平位置，根据需要调整 */
+            width: 40px;
+            /* 图标宽度，根据需要调整 */
+            height: 40px;
+            /* 高度自适应 */
+        }
+
+        /* 腾讯视频文字样式 */
+        .txsp-text {
+            position: relative;
+            /* 相对于.app-area定位 */
+            top: 3px;
+            /* 文字与图标的垂直间距，根据图标高度调整 */
+            left: 196px;
+            /* 文字的水平位置，根据需要调整 */
+            font-size: 10px;
+            /* 文字大小，根据需要调整 */
+        }
+
+        /* qqYY图标样式 */
+        .qqmusic-icon {
+            position: absolute;
+            top: 40px;
+            /* 图标垂直位置，根据需要调整 */
+            left: 275px;
+            /* 图标水平位置，根据需要调整 */
+            width: 40px;
+            /* 图标宽度，根据需要调整 */
+            height: 40px;
+            /* 高度自适应 */
+        }
+
+        /* QQ音乐文字样式 */
+        .qqmusic-text {
+            position: relative;
+            /* 相对于.app-area定位 */
+            top: -13px;
+            /* 文字与图标的垂直间距，根据图标高度调整 */
+            left: 265px;
+            /* 文字的水平位置，根据需要调整 */
+            font-size: 10px;
+            /* 文字大小，根据需要调整 */
+        }
+
+        /* kimiai图标样式 */
+        .kimiai-icon {
+            position: absolute;
+            top: 40px;
+            /* 图标垂直位置，根据需要调整 */
+            left: 340px;
+            /* 图标水平位置，根据需要调整 */
+            width: 40px;
+            /* 图标宽度，根据需要调整 */
+            height: 40px;
+            /* 高度自适应 */
+        }
+
+        /* kimiai文字样式 */
+        .kimiai-text {
+            position: relative;
+            /* 相对于.app-area定位 */
+            top: -29px;
+            /* 文字与图标的垂直间距，根据图标高度调整 */
+            left: 331px;
+            /* 文字的水平位置，根据需要调整 */
+            font-size: 10px;
+            /* 文字大小，根据需要调整 */
+        }
+
+        /* 微博图标样式 */
+        .weibo-icon {
+            position: absolute;
+            top: 40px;
+            /* 图标垂直位置，根据需要调整 */
+            left: 405px;
+            /* 图标水平位置，根据需要调整 */
+            width: 40px;
+            /* 图标宽度，根据需要调整 */
+            height: 40px;
+            /* 高度自适应 */
+        }
+
+        /* 微博文字样式 */
+        .weibo-text {
+            position: relative;
+            /* 相对于.app-area定位 */
+            top: -47px;
+            /* 文字与图标的垂直间距，根据图标高度调整 */
+            left: 403px;
+            /* 文字的水平位置，根据需要调整 */
+            font-size: 10px;
+            /* 文字大小，根据需要调整 */
+        }
+
+        /* 添加网站图标 */
+        .add-site-icon {
+            position: absolute;
+            top: 40px;
+            /* 图标垂直位置，根据需要调整 */
+            left: 470px;
+            /* 图标水平位置，根据需要调整 */
+            width: 40px;
+            /* 图标宽度，根据需要调整 */
+            height: 40px;
+            /* 高度自适应 */
+        }
+
+        /* 添加网站文字样式 */
+        .add-site-text {
+            position: relative;
+            /* 相对于.app-area定位 */
+            top: -63px;
+            /* 文字与图标的垂直间距，根据图标高度调整 */
+            left: 457px;
+            /* 文字的水平位置，根据需要调整 */
+            font-size: 10px;
+            /* 文字大小，根据需要调整 */
+        }
+
+        /* 弹窗样式 */
+        .modal {
+            display: none;
+            /* 默认不显示 */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            height: 100%;
+            /* 侧边栏高度 */
+            width: 197px;
+            /* 侧边栏宽度 */
+            position: fixed;
+            /* 固定定位 */
+            z-index: 1;
+            /* 确保在最顶层 */
+            top: 0px;
+            /* 从顶部开始 */
+            left: 0;
+            background-color: rgba(0, 0.5, 0, 0.5);
+            overflow-x: hidden;
+            /* 隐藏水平滚动条 */
+            transition: 2ms;
+            /* 过渡效果 */
+            padding-top: 20px;
+            /* 内容与顶部的距离 */
+        }
+
+        /* 侧边栏链接样式 */
+        .sidebar a {
+            padding: 8px 8px 8px 16px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #7ca980;
+            display: block;
+            transition: 0.3s;
+        }
+
+        /* 侧边栏链接悬浮效果 */
+        .sidebar a:hover {
+            color: #ffffff;
+        }
+
+        /* 侧边栏按钮样式 */
+        .openbtn {
+            position: relative;
+            top: -8px;
+            /* 在正常位置基础上向下偏移20像素 */
+            left: 20px;
+            /* 在正常位置基础上向右偏移30像素 */
+            font-size: 13px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 11px 15px;
+            border: none;
+        }
+
+        /* 侧边栏关闭按钮 */
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            cursor: pointer;
+        }
+
+        /* 新增图标样式 */
+        .site-item {
+            position: relative;
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* 新增图标样式 */
+        .site-icon {
+            width: 40px;
+            /* 图标宽度，根据需要调整 */
+            height: 40px;
+            /* 高度自适应 */
+        }
+
+        /* 新增图标样式 */
+        .site-name {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* 新增图标样式 */
+        .site-url {
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* 初始时隐藏所有内容区域 */
+        #sidebar .content {
+            display: none;
+        }
+    </style>
+
+    <!-- <script src="js\数据库.js"></script> -->
+</head>
+
+<body>
+    <div class="background-image">
+        <!-- 第一张叠加的图片 -->
+        <img src="图标2.png" alt="叠加图片1" class="overlay-image overlay-image1">
+        <!-- 第二张叠加的图片 -->
+        <img src="logo.png" alt="叠加图片2" class="overlay-image overlay-image2">
+        <!-- 新增的搜索栏 -->
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button>👀</button>
+            <!-- 边框图片 -->
+            <img src="边框图片.jpg" alt="叠加图片3" class="overlay-image overlay-image3">
+        </div>
+        <div class="transparent-form">
+
+            <div class="app-area">常用应用区
+                <!-- 哔哩哔哩图标 -->
+                <a href="https://www.bilibili.com/&#34;  target=" _blank" class="bilibili-link">
+                    <img src="bilibili图标.png" alt="哔哩哔哩图标" class="bilibili-icon">
+                </a>
+                <!-- 哔哩哔哩文字 -->
+                <div class="bilibili-text">哔哩哔哩</div>
+                <!-- 淘宝图标 -->
+                <a href="https://uland.taobao.com/&#34;  target=" _blank" class="taobao-link">
+                    <img src="淘宝图标.png" alt="淘宝图标" class="taobao-icon">
+                </a>
+                <!-- 淘宝文字 -->
+                <div class="taobao-text">淘宝</div>
+
+                <!-- 爱奇艺图标 -->
+                <a href="https://www.iq.com/&#34;  target=" _blank" class="aiqiyi-link">
+                    <img src="爱奇艺图标.jpg" alt="爱奇艺图标" class="aiqiyi-icon">
+                </a>
+                <!-- 爱奇艺文字 -->
+                <div class="aiqiyi-text">爱奇艺</div>
+
+                <!-- 腾讯视频图标 -->
+                <a href="https://v.qq.com/&#34;  target=" _blank" class="txsp-link">
+                    <img src="腾讯视频图标.png" alt="腾讯视频图标" class="txsp-icon">
+                </a>
+                <!-- 腾讯视频文字 -->
+                <div class="txsp-text">腾讯视频</div>
+
+                <!-- QQ音乐图标 -->
+                <a href="https://y.qq.com/&#34;  target=" _blank" class="-qqmusiclink">
+                    <img src="QQ音乐图标.png" alt="QQ音乐图标" class="qqmusic-icon">
+                </a>
+                <!-- QQ音乐文字 -->
+                <div class="qqmusic-text">QQ音乐</div>
+
+                <!-- Kimi.ai图标 -->
+                <a href="https://kimi.ai/&#34;  target=" _blank" class="kimiai-link">
+                    <img src="kimiai图标.jpg" alt="Kimi.ai图标" class="kimiai-icon">
+                </a>
+                <!-- Kimi.ai文字 -->
+                <div class="kimiai-text">Kimi.ai</div>
+
+                <!-- 微博图标 -->
+                <a href="https://www.weibo.com/&#34;  target=" _blank" class="weibo-link">
+                    <img src="微博图标.png" alt="微博图标" class="weibo-icon">
+                </a>
+                <!-- 微博文字 -->
+                <div class="weibo-text">微博</div>
+
+                <!-- 加号图标 -->
+                <a href="#" target="_self" class="add-site-link">
+                    <img src="添加图标.png" alt="添加图标" class="add-site-icon">
+                </a>
+                <!-- 微博文字 -->
+                <div class="add-site-text">添加网站</div>
+
+                <!-- 添加网站的弹窗 -->
+                <div id="addSiteModal" class="modal" style="width: 400px;">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <form id="addSiteForm">
+                            <label for="siteName">网站名称:</label>
+                            <input type="text" id="siteName" name="siteName" required><br><br>
+                            <label for="siteURL">网站地址:</label>
+                            <input type="url" id="siteURL" name="siteURL" required><br><br>
+                            <button type="submit">添加</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="added-sites">
+                    <!-- 添加的网站将显示在这里 -->
+
+                </div>
+
+            </div>
+            <div>其他应用区
+                <ul>
+                    <li>音频类</li>
+                    <li>影视类</li>
+                    <li>学习类</li>
+                    <li>购物类</li>
+                    <li>工具类</li>
+                </ul>
+                <!-- 侧边栏容器 -->
+                <div id="sidebar" class="sidebar">
+                    <div class="sidebar-header">
+                        <h3>其他应用</h3>
+                        <button class="closebtn" onclick="closeSidebar()">&times;</button>
+                    </div>
+                    <div class="sidebar-content">
+                        <a href="#" class="sidebar-link" data-target="content1">影音视听</a>
+                        <a href="#" class="sidebar-link" data-target="content2">实用工具</a>
+                        <a href="#" class="sidebar-link" data-target="content3">聊天社交</a>
+                        <a href="#" class="sidebar-link" data-target="content4">图书阅读</a>
+                        <a href="#" class="sidebar-link" data-target="content5">时尚购物</a>
+                        <a href="#" class="sidebar-link" data-target="content6">摄影摄像</a>
+                        <a href="#" class="sidebar-link" data-target="content7">学习教育</a>
+                        <a href="#" class="sidebar-link" data-target="content8">旅行交通</a>
+                        <a href="#" class="sidebar-link" data-target="content9">金融理财</a>
+                        <a href="#" class="sidebar-link" data-target="content10">新闻资讯</a>
+                        <a href="#" class="sidebar-link" data-target="content11">效率办公</a>
+
+                        <!-- 更多应用链接 -->
+                    </div>
+                    <div class="content">
+                        <h1></h1>
+                        <div id="content1">
+                            <p>影音视听的内容。</p>
+                        </div>
+                        <div id="content2" style="display:none;">
+                            <p>这是标签2的内容。</p>
+                        </div>
+                        <div id="content3" style="display:none;">
+                            <p>这是标签3的内容。</p>
+                        </div>
+                        <!-- 更多内容区域 -->
+                    </div>
+                </div>
+                <!-- 侧边栏触发按钮 -->
+                <button class="openbtn" onclick="openSidebar()"> ☰ 更 多</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        // 获取加号图标和弹窗元素
+        var addIcon = document.querySelector('.add-site-icon');
+        var modal = document.getElementById('addSiteModal');
+        var closeButton = document.querySelector('.close');
+
+        // 当点击加号图标时显示弹窗
+        addIcon.addEventListener('click', function () {
+            modal.style.display = 'block';
+        });
+
+        // 当点击关闭按钮时隐藏弹窗
+        closeButton.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // 表单提交事件
+        document.getElementById('addSiteForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            // 获取表单数据
+            var siteName = document.getElementById('siteName').value;
+            var siteURL = document.getElementById('siteURL').value;
+
+            // TODO: 处理添加网站逻辑，例如添加到页面或发送到服务器
+            // 创建新网站元素
+            var siteElement = document.createElement('div');
+            siteElement.className = 'site-item';
+            siteElement.innerHTML = `
+        <img src="smile.png" alt="${siteName}图标" class="site-icon">
+        <div class="site-name">${siteName}</div>
+        <div class="site-url">${siteURL}</div>
+    `;
+
+            // 将新网站元素添加到added-sites容器中
+            document.querySelector('.added-sites').appendChild(siteElement);
+
+            alert('网站 ' + siteName + ' 添加成功！');
+            modal.style.display = 'none';
+            // 清空表单
+            document.getElementById('addSiteForm').reset();
+        });
+
+        ///打开和关闭侧边栏的函数 
+        function openSidebar() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+        //z内容展示
+        function showContent(event) {
+            event.preventDefault(); // 阻止链接默认的导航行为
+            var targetContentId = event.target.getAttribute('data-target'); // 获取data-target属性的值
+            // 隐藏所有的内容区域
+            var contents = document.querySelectorAll('#sidebar .content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+            // 显示目标内容区域
+            var targetContent = document.getElementById(targetContentId);
+            targetContent.style.display = 'block';
+        }
+        // 为每个侧边栏链接添加点击事件监听器
+        var sidebarLinks = document.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(function (link) {
+            link.addEventListener('click', showContent);
+        });
+        //设置默认显示的内容区域（例如 content1）：
+        window.onload = function () {
+            document.getElementById('content1').style.display = 'block';
+        };
+
+
+    </script>
+</body>
+
+</html>
